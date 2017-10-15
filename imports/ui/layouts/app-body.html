@@ -1,0 +1,24 @@
+<template name="App_body" class="theme-page">
+    <body class="container is-mobile" style="margin-bottom:50px;">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="navbar-brand">
+                    <div class="app-name navbar-item title is-1">Opinions</div>
+                </div>
+                <div class="navbar-menu">
+                    <div class="field">
+                        <div class="navbar-start"></div>
+                    </div>
+                    <div class="login-style navbar-end has-dropdown">{{> loginButtons}}</div>
+                </div>
+            </nav>
+            <header>
+
+            </header>
+            <br/>
+            <div id="content-container">
+                {{> Template.dynamic template=main}}
+            </div>
+        </div>
+    </body>
+</template>

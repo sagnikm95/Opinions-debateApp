@@ -1,0 +1,65 @@
+<template name="Question_show_page">
+    {{#if currentUser}}
+        <div class="tile is-ancestor">
+            <div class="tile is-2">
+            </div>
+            <div class="center-align tile is-8">
+                <label class="title is-2">{{question.text}}</label>
+            </div>
+        </div>
+    {{else}}
+        Login to view the question
+    {{/if}}
+
+    <br/>
+
+    <div class="tile is-ancestor">
+        <div class="tile is-5">
+        </div>
+        <div class="tile is-2">
+            <button class="is-fullwidth button is-primary" id='start-debate-button'> Start Debate </button>
+        </div>
+    </div>
+
+     <div class='tile is-ancestor hide is-horizontal' id='choose-options-div'>
+        <div class="tile is-parent is-5">
+        </div>
+            <div class="tile is-1">
+                <button class="btn is-fullwidth button is-dark" id='for-button'> For! </button>
+            </div>
+            <div class="tile is-1">
+                <button class="btn is-fullwidth button is-dark" id='against-button'> Against! </button>
+            </div>
+    </div>
+
+
+
+  <div class="question-chat-list">
+      <p class="title is-3"><strong>Debates</strong></p>
+      <ul>
+          <li>
+              <div class="card">
+                  <footer class="card-footer">
+                      <p class="card-footer-item"><strong>For the Motion</strong></p>
+                      <p class="card-footer-item"><strong>Against the Motion</strong></p>
+                      <p class="card-footer-item"><strong>Time Started</strong></p>
+                      <p class="card-footer-item"><strong>Chat URL</strong></p>
+                  </footer>
+              </div>
+          </li>
+          {{#each chat in questionChatList}}
+          <li>
+              <div class="card">
+                  <footer class="card-footer">
+                      <p class="card-footer-item">{{chat.for}}</p>
+                      <p class="card-footer-item">{{chat.against}}</p>
+                      <p class="card-footer-item">{{chat.createdAt}}</p>
+                      <a class="card-footer-item" href="{{pathFor 'Chat.show' _id=chat._id }}">link</a>
+                  </footer>
+              </div>
+          </li>
+          {{/each}}
+      </ul>
+  </div>
+
+</template>

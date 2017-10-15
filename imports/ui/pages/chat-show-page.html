@@ -1,0 +1,47 @@
+<template name="Chat_show_page">
+    <div style="height: 5vh; margin-bottom: 20px; margin-right: 0px">
+        <span class="title is-1">{{chatText}}</span>
+        {{#if editable}}
+            <button class="js-leave-conv leave-btn button is-danger is-medium" style="height: 90%; width: 18%; margin: 10px ">Leave</button>
+        {{/if}}
+    </div>
+
+    <div id="chat-window" style="height: 75vh; border: 1px black solid;">
+        <div id="messages" style="overflow: auto; height: 100%;">
+                <ul>
+                    {{#each message in messageList}}
+                        <li>
+                            <div class="{{getLR message.owner}} card">
+                                <div class="{{getLR message.owner}} card-content">
+                                    <label class="{{assignColor message.owner}}">{{message.owner}}</label>
+                                    <div class="content">
+                                        <label class="title is-5">{{message.message}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {{/each}}
+                </ul>
+        </div>
+    </div>
+    {{#if editable}}
+        <form class="js-message-new" style="height: 12%; padding-top: 20px">
+            <input type="text" class="input is-primary is-large" style="height: 90%; width: 80%" name="message"
+               placeholder="Type your message here...">
+            <input class="submit-button button is-primary is-large" type="submit" style="height: 90%; width: 18%; " value="Send">
+        </form>
+    {{else}}
+
+    <div class="stat card">
+        <div class="card-content">
+            <span class="title is-6">Voted for by: {{countVotedFor}} persons</span>
+            <br/>
+            <span class="title is-6">Voted against by: {{countVotedAgainst}} persons</span>
+        </div>
+        <div class="card-footer">
+            <button class="inc-voted-for button is-primary card-footer-item">Vote for!</button>
+            <button class="inc-voted-against button is-primary card-footer-item">Vote against!</button>
+        </div>
+    </div>
+    {{/if}}
+</template>

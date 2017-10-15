@@ -1,0 +1,45 @@
+<template name="Question_list_show_page">
+    {{#if currentUser}}
+        <div class="card question-box">
+            <!-- <header class="card-header"> -->
+                <!-- <p class="card-header-title"> -->
+                    <!-- Type in your question -->
+                <!-- </p> -->
+            <!-- </header> -->
+            <div class="card-content">
+                <form class="question-input control new-question" style="padding-bottom: 20px;">
+                    <input class="input is-medium" type="text" id="title-input" style="margin-bottom: 5px;" placeholder="Type in your question here"/>
+                    <input class="textarea is-medium" type="text" id="description-input" placeholder="Enter more details about the question (optional)" style="margin-bottom: 5px;"/>
+                    <input class="button is-primary" style="float: right; margin-top: 5px;" type="submit" id="post-button" value="Post" />
+                </form>
+            </div>
+        </div>
+    {{ else }}
+        <p>Log in or sign up to post a question</p>
+        <br>
+    {{/if}}
+    <br/>
+    <ul>
+        {{#each question in questions}}
+            <li class="question-list">
+                <div class="card is-dark">
+                    <div class="card-content is-dark">
+                        <p class="title is-dark">
+                            <a class="black-link is-black" href="{{pathFor 'Question.show' _id=question._id}}" title="{{question.text}}">
+                                {{question.text}}
+
+                            </a>
+
+                        </p>
+                        <p class="subtitle">
+                            by {{question.username}}
+                        </p>
+                        <p>
+                            {{question.description}}
+                        </p>
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+</template>
